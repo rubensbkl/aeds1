@@ -283,23 +283,44 @@ void method_0619(void) {
 
 }
 
+int fibonacci(int n) {
+    if (n == 0) {
+        return 0;
+    } else if(n == 1) {
+        return 1;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+
+int isFibonacciPar(int valor, int current) {
+    if (valor == 0) {
+        return 0;
+    } else {
+        if(fibonacci(current) % 2 == 0) {
+            return fibonacci(current) + isFibonacciPar(valor - 1, current + 1);
+        } else {
+            return isFibonacciPar(valor, current + 1);
+        }
+    }
+}
+
 void method_0620(void) {
 
     // Identificação do programa
     printf_s("%s\n", "\nMetodo 0620\n");
 
     // Recepção dos dados
-    int x = 0;
-    char string[80];
-    printf_s("Insira a string: ");
-    fgets(string, sizeof(string), stdin);
-    string[strcspn(string,"\n")] = '\0';
+    int valor = 0;
+    int resp = 0;
+    printf_s("Insira o valor desejado: ");
+    scanf_s("%d", &valor); getchar();
 
     // Processamento
-    x = countMaiFromM(string, 0, 0);
+    resp = isFibonacciPar(valor, 1);
 
     // Apresentação dos dados
-    printf_s("Quantidade de maiusculas maiores que M: %d", x);
+    printf_s("A soma dos %d primeiros valores de fibonnacci e: %d", valor, resp);
 
     // Encerramento
     printf_s("%s\n", "\nPressione ENTER para continuar\n");
@@ -340,7 +361,6 @@ void method_06E1(void) {
 
 }
 
-
 double fatorial(int n) {
     if (n == 0 || n == 1) {
         return 1;
@@ -365,8 +385,6 @@ double seilakkk2(int n) {
     }
 }
 
-
-
 void method_06E2(void) {
 
     // Identificação do programa
@@ -389,8 +407,6 @@ void method_06E2(void) {
     getchar();
 
 }
-
-
 
 int main (void) {
 
@@ -422,6 +438,7 @@ int main (void) {
             case 7: method_0617(); break;
             case 8: method_0618(); break;
             case 9: method_0619(); break;
+            case 10: method_0620(); break;
             case 11: method_06E1(); break;
             case 12: method_06E2(); break;
             default: printf_s("\n%s\n\n", "ERRO: Opcao invalida."); break;

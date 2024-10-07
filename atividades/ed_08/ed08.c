@@ -40,14 +40,14 @@ void readArrayFromFile(char fileName[], int* array) {
     int size = 0;
     FILE* file = fopen(fileName, "r"); // Abrir arquivo
     if (file != NULL) { // Verificar se o arquivo foi aberto
-        fscanf(file, "%d", &size); // Ler tamanho do array
+        IO_fscanf(file, "%d", &size); // Ler tamanho do array
 
         // Alocar array com base no tamanho lido
         array = (int*)malloc(size * sizeof(int));
 
         for (int i = 0; i < size; i++) {
             do {
-                fscanf(file, "%d", &array[i]);
+                IO_fscanf(file, "%d", &array[i]);
             } while (array[i] <= 0 || array[i] % 2 == 0);
         }
         fclose(file);
@@ -56,7 +56,7 @@ void readArrayFromFile(char fileName[], int* array) {
             IO_printf("%d ", array[i]);
         }
     } else {
-        printf("Erro ao abrir arquivo %s\n", fileName);
+        IO_printf("Erro ao abrir arquivo %s\n", fileName);
     }
 }
 
@@ -113,26 +113,26 @@ void method_0813() {
     // Abrir aquivo
     FILE* file = fopen("DADOS.TXT", "w");
     if (file == NULL) { // Verificar se o arquivo foi aberto
-        printf("Erro ao abrir o arquivo DADOS.TXT.\n");
+        IO_printf("Erro ao abrir o arquivo DADOS.TXT.\n");
         free(array);
         return;
     }
 
     // Escrever dados no arquivo
-    fprintf(file, "%d\n", n);
+    IO_fprintf(file, "%d\n", n);
     for (int i = 0; i < n; i++) {
-        fprintf(file, "%d\n", array[i]);
+        IO_fprintf(file, "%d\n", array[i]);
     }
 
     // Fechar arquivo
     fclose(file);
 
     // Apresentação dos dados
-    printf("Elementos do arranjo:\n");
+    IO_printf("Elementos do arranjo:\n");
     for (int i = 0; i < n; i++) {
-        printf("%d ", array[i]);
+        IO_printf("%d ", array[i]);
     }
-    printf("\n");
+    IO_printf("\n");
 
     // Desalocar memória
     free(array);
@@ -147,20 +147,20 @@ void method_0813() {
 int* lerArquivo(int *n, char filename[]) {
     FILE* file = fopen(filename, "r");
     if (file == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
+        IO_printf("Erro ao abrir o arquivo.\n");
         return NULL;
     }
-    fscanf(file, "%d", n);
+    IO_fscanf(file, "%d", n);
 
     int* array = (int*)malloc((*n) * sizeof(int));
     if (array == NULL) {
-        printf("Erro ao alocar memória.\n");
+        IO_printf("Erro ao alocar memória.\n");
         fclose(file);
         return NULL;
     }
 
     for (int i = 0; i < *n; i++) {
-        fscanf(file, "%d", &array[i]);
+        IO_fscanf(file, "%d", &array[i]);
     }
 
     fclose(file);
@@ -256,7 +256,6 @@ void method_0815() {
 
 }
 
-// Function to calculate the average of values in an array
 double acharMedia(int n, int* arr) {
     if (n == 0) return 0.0;
 
@@ -270,13 +269,12 @@ double acharMedia(int n, int* arr) {
 void escreverArquivo(const char* filename, int* arr, int n) {
     FILE* file = fopen(filename, "w");
     if (file == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
-        exit(1);
+        IO_printf("Erro ao abrir o arquivo para escrita.\n");
     }
 
-    fprintf(file, "%d\n", n);
+    IO_fprintf(file, "%d\n", n);
     for (int i = 0; i < n; i++) {
-        fprintf(file, "%d\n", arr[i]);
+        IO_fprintf(file, "%d\n", arr[i]);
     }
 
     fclose(file);
@@ -300,7 +298,7 @@ void method_0816() {
     }
     media = acharMedia(n, array);
 
-    // Separar os valores em dois arranjos
+    // Separar os valores
     int* menorOuIgual = (int*)malloc(n * sizeof(int));
     int* maior = (int*)malloc(n * sizeof(int));
     int countMenorOuIgual = 0;
@@ -383,8 +381,6 @@ void method_0818() {
     int* array = NULL;
     int n = 0;
     array = lerArquivo(&n, "DADOS.TXT");
-
-    // Ler valor procurado do teclado
     int procurado;
     procurado = IO_readint("Valor a ser procurado: ");
 
@@ -419,14 +415,12 @@ int acharPosicao(int procurado, int inicio, int n, int* arr) {
 void method_0819() {
 
     // Identificação do programa
-    printf("%s\n", "\nMetodo 0819\n");
+    IO_printf("%s\n", "\nMetodo 0819\n");
 
     // Recepção dos dados
     int* array = NULL;
     int n = 0;
     array = lerArquivo(&n, "DADOS.TXT");
-
-    // Ler valor procurado do teclado
     int procurado;
     procurado = IO_readint("Valor a procurar: ");
 
@@ -435,16 +429,16 @@ void method_0819() {
 
     // Apresentação dos dados
     if (posicao == -1) {
-        printf("Valor nao encontrado.\n");
+        IO_printf("Valor nao encontrado.\n");
     } else {
-        printf("Encontrado na posicao: %d\n", posicao);
+        IO_printf("Encontrado na posicao: %d\n", posicao);
     }
 
     // Desalocar memória
     free(array);
 
     // Encerramento
-    printf("%s\n", "\nPressione ENTER para continuar\n");
+    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 
 }
@@ -462,14 +456,12 @@ int acharQuantos(int procurado, int inicio, int n, int* arr) {
 void method_0820() {
 
     // Identificação do programa
-    printf("%s\n", "\nMetodo 0820\n");
+    IO_printf("%s\n", "\nMetodo 0820\n");
 
     // Recepção dos dados
     int* array = NULL;
     int n = 0;
     array = lerArquivo(&n, "DADOS.TXT");
-
-    // Ler valor procurado do teclado
     int procurado;
     procurado = IO_readint("Valor para procurar: ");
 
@@ -477,13 +469,56 @@ void method_0820() {
     int vezes = acharQuantos(procurado, 0, n, array);
 
     // Apresentação dos dados
-    printf("O valor %d aparece %d vezes.\n", procurado, vezes);
+    IO_printf("O valor %d aparece %d vezes.\n", procurado, vezes);
 
     // Desalocar memória
     free(array);
 
     // Encerramento
-    printf("%s\n", "\nPressione ENTER para continuar\n");
+    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    getchar();
+
+}
+
+int* acharDivisoresImpares(int num, int* count) {
+    int* divisores = (int*)malloc(num * sizeof(int));
+    *count = 0;
+    for (int i = 1; i <= num; i++) {
+        if (num % i == 0 && i % 2 != 0) {
+            divisores[(*count)++] = i;
+        }
+    }
+    return divisores;
+}
+
+void method_08E1() {
+    
+    // Identificação do programa
+    IO_printf("%s\n", "\nMetodo 08E1\n");
+
+    // Ler valor do teclado
+    int num;
+    num = IO_readint("Digite um valor inteiro: ");
+
+    // Processamento
+    int count;
+    int* divisores = acharDivisoresImpares(num, &count);
+
+    // Armazenar divisores no arquivo
+    FILE* file = fopen("DIVISORES.TXT", "w");
+    if (file == NULL) {
+        IO_printf("Erro ao abrir o arquivo para escrita.\n");
+    }
+    for (int i = 0; i < count; i++) {
+        IO_fprintf(file, "%d\n", divisores[i]);
+    }
+    fclose(file);
+
+    // Desalocar memória
+    free(divisores);
+
+    // Encerramento
+    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 
 }
@@ -494,17 +529,16 @@ int main (void) {
    int opcao = 0;
    
    // Identificação do programa
-   printf("\n");
-   printf("%s\n", "Lista_08 - v.1.0 - 06/10/2024");
-   printf("%s\n", "Matricula: 855796 Nome: Rubens Dias Bicalho");
-   printf("\n");
+   IO_printf("\n");
+   IO_printf("%s\n", "Lista_08 - v.1.0 - 06/10/2024");
+   IO_printf("%s\n", "Matricula: 855796 Nome: Rubens Dias Bicalho");
+   IO_printf("\n");
 
     // Selecionar ação
 
    do {
         // Ler opcão
-        printf("%s", "Qual a sua opcao? ");
-        scanf("%d", &opcao ); getchar();
+        opcao = IO_readint("Qual a sua opcao? ");
 
         // Escolher ação
         switch (opcao) {
@@ -519,12 +553,13 @@ int main (void) {
             case 8: method_0818(); break;
             case 9: method_0819(); break;
             case 10: method_0820(); break;
-            default: printf("\n%s\n\n", "ERRO: Opcao invalida."); break;
+            case 11: method_08E1(); break;
+            default: IO_printf("\n%s\n\n", "ERRO: Opcao invalida."); break;
         }
     } while (opcao != 0);
     
     // Encerramento do programa
-    printf("\n%s\n\n", "Apertar ENTER para terminar.");
+    IO_printf("\n%s\n\n", "Apertar ENTER para terminar.");
     getchar();
 
 }

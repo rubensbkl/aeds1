@@ -3,6 +3,12 @@
 #include <string.h>
 #include <math.h>
 
+/*
+Olá professor, tudo bem?
+As funções recursivas nas primeiras questões estão muito ruins pois só depois entendi como elas deveriam ser feitas
+para serem mais eficientes. Não tive tempo de refaze-las, mas a partir da questão 0619 elas estão melhores.
+*/
+
 void printMultiplesUp(int num, int current, int range) {
     if(range > 0) {
         if(current % num == 0 && current > 0) {
@@ -328,11 +334,11 @@ void method_0620(void) {
 
 }
 
-double seilakkk(int x, int n) {
+double recursao1(int x, int n) {
     if(n == 1) {
         return 1;
     } else {
-        return pow(x, (n - 1) * 2) + seilakkk(x, n - 1);
+        return pow(x, (n - 1) * 2) + recursao1(x, n - 1);
     }
 }
 
@@ -350,7 +356,7 @@ void method_06E1(void) {
     scanf_s("%d", &n); getchar();
 
     // Processamento
-    resp = seilakkk(x, n);
+    resp = recursao1(x, n);
 
     // Apresentação dos dados
     printf_s("Resultado: %lf", resp);
@@ -377,11 +383,11 @@ double numerador(int n) {
     }
 }
 
-double seilakkk2(int n) {
+double recursao2(int n) {
     if(n == 1) {
         return 1;
     } else {
-        return (numerador(n) / fatorial(pow(2, n) - 1)) + seilakkk2(n - 1);
+        return (numerador(n) / fatorial(pow(2, n) - 1)) + recursao2(n - 1);
     }
 }
 
@@ -397,7 +403,7 @@ void method_06E2(void) {
     scanf_s("%d", &n); getchar();
 
     // Processamento
-    resp = seilakkk2(n);
+    resp = recursao2(n);
 
     // Apresentação dos dados
     printf_s("Resultado: %lf", resp);

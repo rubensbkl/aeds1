@@ -1,15 +1,13 @@
 /**
-   IO - Console input/output library.
-   @author  PUC-Minas - ICEI
-   @version 0.1 - 2023-1b
+   DeLibrary - Library made in C for simplify and optimize process.
+   @author  Rubens Dias Bicalho
+   @version 1.0.0
    
-   IO - v2023-1_0.1 - __ / __ / _____
+   DeLibrary - v1.0.0 - 26/10/2024
    Author: Rubens Dias Bicalho
-
  */
+
 // ---------------------- lista de dependencias
-
-
 #include <stdio.h>      // para as funcoes de entrada e saida
 #include <stdlib.h>     // para as funcoes de alocacao de memoria    
 #include <math.h>       // para as funcoes matematicas
@@ -26,10 +24,10 @@
 
 // ---------------------- redefinicoes uteis
 
-#define IO_printf   printf  // melhor: printf_s
-#define IO_scanf    scanf   // melhor: scanf_s
-#define IO_fprintf  fprintf // melhor: fprintf_s
-#define IO_fscanf   fscanf  // melhor: fscanf_s
+#define De_printf   printf  // melhor: printf_s
+#define De_scanf    scanf   // melhor: scanf_s
+#define De_fprintf  fprintf // melhor: fprintf_s
+#define De_fscanf   fscanf  // melhor: fscanf_s
 
 // ---------------------- definicoes de constantes
 
@@ -52,24 +50,24 @@ typedef bool*   bools  ;            // definir arranjo de logicos
 
 // ---------------------- definicoes de variaveis globais
 
-int  IO_error   = 0;                // inicialmente sem erros
-bool IO_trace   = true;             // inicialmente habilitado
+int  De_error   = 0;                // inicialmente sem erros
+bool De_trace   = true;             // inicialmente habilitado
 
 // ---------------------- definicoes de funcoes e procedimentos
 
 // ---------------------- para tratamento de erros
 
-void IO_debugOFF() {
-    IO_trace = false;
+void De_debugOFF() {
+    De_trace = false;
 }
 
-void IO_debugON() {
-    IO_trace = true;
+void De_debugON() {
+    De_trace = true;
 }
 
 // ---------------------- para entradas e saidas
 
-void IO_flush() {
+void De_flush() {
     int  x = 0;
     do {
         x = getchar( );
@@ -77,63 +75,76 @@ void IO_flush() {
     clearerr (stdin);
 }
 
-int IO_readint (const char * const text)
+int De_readint (const char * const text)
 {
     int x = 0;
-    if (IO_trace) {
-        IO_printf("%s", text);
+    if (De_trace) {
+        De_printf("%s", text);
     }
-    IO_scanf("%d", &x);
-    IO_flush();
+    De_scanf("%d", &x);
+    De_flush();
     return (x);
 }
 
-double IO_readdouble ( const char * const text )
+int De_readPositiveInt (const char * const text)
+{
+    int x = 0;
+    if (De_trace) {
+        De_printf("%s", text);
+    }
+    do {
+        De_scanf("%d", &x);
+    } while (x < 0);
+    De_flush();
+    return (x);
+}
+
+double De_readdouble ( const char * const text )
 {
     double x = 0.0;
-    if (IO_trace) {
-        IO_printf("%s", text);
+    if (De_trace) {
+        De_printf("%s", text);
     }
-    IO_scanf("%lf", &x);
-    IO_flush();
+    De_scanf("%lf", &x);
+    De_flush();
     return (x);
 }
 
-bool IO_readbool(const char * const text) {
+bool De_readbool(const char * const text) {
     int x = 0;
-    if (IO_trace) {
-        IO_printf("%s", text);
+    if (De_trace) {
+        De_printf("%s", text);
     }
-    IO_scanf("%d", &x);
-    IO_flush();
+    De_scanf("%d", &x);
+    De_flush();
     return (x!=0);
 }
 
-char IO_readchar ( const char * const text )
+char De_readchar ( const char * const text )
 {
     char x = '0';
-    if ( IO_trace ) {
-       IO_printf ( "%s", text   );
+    if ( De_trace ) {
+       De_printf ( "%s", text   );
     }
     do {
         x = getchar( );
     } while ('\n' == x);
-    IO_flush();
+    De_flush();
     return (x);
 }
 
-chars IO_new_chars (int size)
+chars De_new_chars (int size)
 {
     return ((chars)malloc((size+1)*sizeof(char)));
 }
 
-chars IO_readstring ( const char * const text )
+chars De_readstring ( const char * const text )
 {
-    chars buffer = IO_new_chars(STR_SIZE+1);
-    if (IO_trace) IO_printf ("%s", text);
+    chars buffer = De_new_chars(STR_SIZE+1);
+    if (De_trace) De_printf ("%s", text);
     fgets(buffer, sizeof(buffer), stdin);
     buffer[strcspn(buffer,"\n")] = '\0';
-    IO_flush();
+    De_flush();
     return (buffer);
 }
 
@@ -141,7 +152,7 @@ chars IO_readstring ( const char * const text )
  * Random
  */
 
-int randomIntInRange(int min, int max) {
+int De_randomIntInRange(int min, int max) {
     return min + rand() % (max - min + 1);
 }
 
@@ -150,7 +161,7 @@ int randomIntInRange(int min, int max) {
  * File
  */
 
-int getIntArraySizeFromFile(const char filename[]) {
+int De_getIntArraySizeFromFile(const char filename[]) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo");
@@ -165,14 +176,14 @@ int getIntArraySizeFromFile(const char filename[]) {
     return n;
 }
 
-int* readIntArrayFromFile(const char filename[]) {
+int* De_readIntArrayFromFile(const char filename[]) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo");
         return NULL;
     }
 
-    int size = getIntArraySizeFromFile(filename);
+    int size = De_getIntArraySizeFromFile(filename);
     int *array = (int *) malloc(size * sizeof(int));
     for (int i = 0; i < size; i++) {
         fscanf(file, "%d", &array[i]);
@@ -185,21 +196,21 @@ int* readIntArrayFromFile(const char filename[]) {
  * Array
  */
 
-int arraySearch(int value, int *array, int size) {
+int De_arraySearch(int value, int *array, int size) {
     for (int i = 0; i < size; i++) {
         if (array[i] == value) return i + 1;
     }
     return -1;
 }
 
-bool arrayCompare(int *array1, int *array2, int size) {
+bool De_arrayCompare(int *array1, int *array2, int size) {
     for (int i = 0; i < size; i++) {
         if (array1[i] != array2[i]) return false;
     }
     return true;
 }
 
-int* arrayAdd(int *array1, int multi, int *array2, int size) {
+int* De_arrayAdd(int *array1, int multi, int *array2, int size) {
     int *array = (int *) malloc(size * sizeof(int));
     for (int i = 0; i < size; i++) {
         array[i] = array1[i] + (array2[i] * multi);
@@ -207,7 +218,7 @@ int* arrayAdd(int *array1, int multi, int *array2, int size) {
     return array;
 }
 
-bool isArrayCrescent(int *array, int size) {
+bool De_isArrayCrescent(int *array, int size) {
     for (int i = 0; i < size; i++) {
         if (array[i] > array[i + 1]) return false;
     }
@@ -218,7 +229,7 @@ bool isArrayCrescent(int *array, int size) {
  * Matrix
  */
 
-void printMatrix(int **matrix, int rows, int columns) {
+void De_printMatrix(int **matrix, int rows, int columns) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             printf("%d ", matrix[i][j]);
@@ -227,7 +238,7 @@ void printMatrix(int **matrix, int rows, int columns) {
     }
 }
 
-int** readIntMatrixFromFile(const char filename[], int *rows, int *columns) {
+int** De_readIntMatrixFromFile(const char filename[], int *rows, int *columns) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo\n");
@@ -251,7 +262,7 @@ int** readIntMatrixFromFile(const char filename[], int *rows, int *columns) {
     return matrix;
 }
 
-int** matrixTranspose(int **matrix, int rows, int columns) {
+int** De_matrixTranspose(int **matrix, int rows, int columns) {
     int **resposta = (int **)malloc(columns * sizeof(int *));
     for (int i = 0; i < columns; i++) {
         resposta[i] = (int *)malloc(rows * sizeof(int));
@@ -266,7 +277,7 @@ int** matrixTranspose(int **matrix, int rows, int columns) {
     return resposta;
 }
 
-bool matrixZero(int **matrix, int rows, int columns) {
+bool De_matrixZero(int **matrix, int rows, int columns) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             if (matrix[i][j] != 0) return false;
@@ -275,7 +286,7 @@ bool matrixZero(int **matrix, int rows, int columns) {
     return true;
 }
 
-bool matrixCompare(int **matrix1, int **matrix2, int rows, int columns) {
+bool De_matrixCompare(int **matrix1, int **matrix2, int rows, int columns) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             if (matrix1[i][j] != matrix2[i][j]) return false;
@@ -284,14 +295,14 @@ bool matrixCompare(int **matrix1, int **matrix2, int rows, int columns) {
     return true;
 }
 
-void freeMatrix(int** matrix, int rows) {
+void De_freeMatrix(int** matrix, int rows) {
     for (int i = 0; i < rows; i++) {
         free(matrix[i]);
     }
     free(matrix);
 }
 
-int** matrixAdd(int** matrix1, int multi, int** matrix2, int rows, int columns) {
+int** De_matrixAdd(int** matrix1, int multi, int** matrix2, int rows, int columns) {
     int** resposta = (int**)malloc(rows * sizeof(int*));
     for (int i = 0; i < rows; i++) {
         resposta[i] = (int*)malloc(columns * sizeof(int));
@@ -306,7 +317,7 @@ int** matrixAdd(int** matrix1, int multi, int** matrix2, int rows, int columns) 
     return resposta;
 }
 
-int** matrixProduct(int** matrix1, int** matrix2, int rows, int columns) {
+int** De_matrixProduct(int** matrix1, int** matrix2, int rows, int columns) {
     int** resposta = (int**)malloc(rows * sizeof(int*));
     for (int i = 0; i < rows; i++) {
         resposta[i] = (int*)malloc(columns * sizeof(int));

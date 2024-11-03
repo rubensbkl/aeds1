@@ -1,5 +1,5 @@
 /**
-   DeLibrary - Library made in C for simplify and optimize process.
+   DeCLibrary - Library made in C for simplify and optimize process.
    @author  Rubens Dias Bicalho
    @version 1.0.0
    
@@ -82,19 +82,6 @@ int De_readint (const char * const text)
         De_printf("%s", text);
     }
     De_scanf("%d", &x);
-    De_flush();
-    return (x);
-}
-
-int De_readPositiveInt (const char * const text)
-{
-    int x = 0;
-    if (De_trace) {
-        De_printf("%s", text);
-    }
-    do {
-        De_scanf("%d", &x);
-    } while (x < 0);
     De_flush();
     return (x);
 }

@@ -1,37 +1,57 @@
 #include "../lib.h"
 
 void method_0111(void) {
+    // Identificação
     De_printf("%s\n", "\nMetodo 0111\n");
-    int lado = De_readPositiveInt("Insira o lado do quadrado: ") * 2;
+    // Recepção dos dados
+    int valor = 0;
+    do {
+        valor = De_readint("Insira o lado do primeiro quadrado: ");
+    } while (valor <= 0);
+    // Processamento dos dados
+    int lado = valor * 2;
     int area = lado * lado;
-    De_printf("%s%lf\n", "Area do outro quadrado = ", area);
+    // Apresentação do resultado
+    De_printf("%s%d\n", "Area do segundo quadrado = ", area);
+    // Encerramento
     De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 }
 
 void method_0112(void) {
+    // Identificação
     De_printf("%s\n", "\nMetodo 0112\n");
-    int lado = De_readint("Insira o lado do quadrado: ") / 3;
-    int perimetro = 4 * lado;
-    int area = lado * lado;
-    De_printf("%s%lf\n", "Area do quadrado = ", area);
-    De_printf("%s%lf\n", "Perimetro do quadrado = ", perimetro);
+    // Recepção dos dados
+    int valor = 0;
+    do {
+        valor = De_readint("Insira o lado do primeiro quadrado: ");
+    } while (valor <= 0);
+    // Processamento dos dados
+    double lado = (double)valor / 3;
+    double perimetro = 4 * lado;
+    double area = lado * lado;
+    // Apresentação do resultado
+    De_printf("%s%lf\n", "Area do segundo quadrado = ", area);
+    De_printf("%s%lf\n", "Perimetro do segundo quadrado = ", perimetro);
+    // Encerramento
     De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 }
 
 void method_0113(void) {
-    // Identificação do programa
+    // Identificação
     De_printf("%s\n", "\nMetodo 0113\n");
     // Recepção dos dados
-    int lado0 = 0;
-    int lado1 = 0;
-    lado0 = De_readint("Insira o lado do quadrado: ") * 3;
-    lado1 = De_readint("Insira o outro lado do quadrado: ") * 3;
+    int valor0 = 0, valor1 = 0;
+    do {
+        valor0 = De_readint("Insira o lado do primeiro retangulo: ");
+        valor1 = De_readint("Insira o outro lado do primeiro retangulo: ");
+    } while (valor0 <= 0 || valor1 <= 0);
     // Processamento dos dados
+    int lado0 = valor0 * 3, lado1 = valor1 * 3;
     int area = lado0 * lado1;
-    // Apresentação dos dados
-    De_printf("%s%lf\n", "Area do quadrado = ", area);
+    // Apresentação do resultado
+    De_printf("%s%lf\n", "Area do segundo retangulo = ", area);
     // Encerramento
     De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
@@ -41,16 +61,18 @@ void method_0114(void) {
     // Identificação do programa
     De_printf("%s\n", "\nMetodo 0114\n");
     // Recepção dos dados
-    int lado0 = 0;
-    int lado1 = 0;
-    lado0 = De_readint("Insira o lado do quadrado: ") / 6;
-    lado1 = De_readint("Insira o outro lado do quadrado: ") / 6;
+    int valor0 = 0, valor1 = 0;
+    do {
+        valor0 = De_readint("Insira o lado do primeiro retangulo: ");
+        valor1 = De_readint("Insira o outro lado do primeiro retangulo: ");
+    } while (valor0 <= 0 || valor1 <= 0);
     // Processamento dos dados
-    int area = lado0 * lado1;
-    int perimetro = lado0 * 2 + lado1 * 2;
+    double lado0 = (double)valor0 / 6, lado1 = (double)valor1 / 6;
+    double area = lado0 * lado1;
+    double perimetro = lado0 * 2 + lado1 * 2;
     // Apresentação dos dados
-    De_printf("%s%lf\n", "Area do quadrado = ", area);
-    De_printf("%s%lf\n", "Perimetro do quadrado = ", perimetro);
+    De_printf("%s%lf\n", "Area do segundo retangulo = ", area);
+    De_printf("%s%lf\n", "Perimetro do segundo retangulo = ", perimetro);
     // Encerramento
     De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
@@ -199,7 +221,7 @@ int main ( void ) {
 
    // Identificação do programa
    De_printf ("\n");
-   De_printf ("%s\n", "Lista_01 - v.1.0 - 18/08/2024");
+   De_printf ("%s\n", "Lista_01 - v.2.0 - 27/10/2024");
    De_printf ("%s\n", "Matricula: 855796 Nome: Rubens Dias Bicalho");
    De_printf ("\n");
 

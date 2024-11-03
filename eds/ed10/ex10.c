@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "../lib.h"
 
 void method_1011() {
     srand(time(NULL));

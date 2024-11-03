@@ -1,51 +1,51 @@
-#include "library.h"
+#include "../lib.h"
 
 void printMultiplesOfThree(int count) {
     for (int i = 1; i <= count; i++) {
-        IO_printf("%d ", 3 * (2 * i - 1));
+        De_printf("%d ", 3 * (2 * i - 1));
     }
-    IO_printf("\n");
+    De_printf("\n");
 }
 
 void method_0711(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0711\n");
+    De_printf("%s\n", "\nMetodo 0711\n");
 
     // Recepção dos dados
     int n = 0;
-    n = IO_readint("Insira a quantidade de numeros desejados: ");
+    n = De_readint("Insira a quantidade de numeros desejados: ");
 
     // Processamento e apresentação dos dados
     printMultiplesOfThree(n);
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 
 }
 
 void printMultiplesOfSix(int count) {
     for (int i = 0; i < count; i++) {
-        IO_printf("%d ", 60 - (i * 6));
+        De_printf("%d ", 60 - (i * 6));
     }
-    IO_printf("\n");
+    De_printf("\n");
 }
 
 void method_0712(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0712\n");
+    De_printf("%s\n", "\nMetodo 0712\n");
 
     // Recepção dos dados
     int n = 0;
-    n = IO_readint("Insira a quantidade de numeros desejados: ");
+    n = De_readint("Insira a quantidade de numeros desejados: ");
 
     // Processamento e apresentação dos dados
     printMultiplesOfSix(n);
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 
 }
@@ -53,26 +53,26 @@ void method_0712(void) {
 void printSequenceOfPowers(int count) {
     int value = 1;
     for (int i = 0; i < count; i++) {
-        IO_printf("%d ", value);
+        De_printf("%d ", value);
         value *= 4;
     }
-    IO_printf("\n");
+    De_printf("\n");
 }
 
 void method_0713(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0713\n");
+    De_printf("%s\n", "\nMetodo 0713\n");
 
     // Recepção dos dados
     int n = 0; 
-    n = IO_readint("Insira a quantidade de numeros desejados: ");
+    n = De_readint("Insira a quantidade de numeros desejados: ");
 
     // Processamento e apresentação dos dados
     printSequenceOfPowers(n);
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 
 }
@@ -80,53 +80,53 @@ void method_0713(void) {
 void printInverseSequenceOfPowers(int count) {
     double value = 1.0;
     for (int i = 0; i < count; i++) {
-        IO_printf("1/%.0lf ", value);
+        De_printf("1/%.0lf ", value);
         value *= 4;
     }
-    IO_printf("\n");
+    De_printf("\n");
 }
 
 void method_0714(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0714\n");
+    De_printf("%s\n", "\nMetodo 0714\n");
 
     // Recepção dos dados
     int n = 0;
-    n = IO_readint("Insira a quantidade de numeros desejados: ");
+    n = De_readint("Insira a quantidade de numeros desejados: ");
 
     // Processamento e apresentação dos dados
     printInverseSequenceOfPowers(n);
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 
 }
 
 void printRealSequence(int count, double x) {
     for (int i = 0; i < count; i++) {
-        IO_printf("1/%.2lf ", pow(x, 2 * i));
+        De_printf("1/%.2lf ", pow(x, 2 * i));
     }
-    IO_printf("\n");
+    De_printf("\n");
 }
 
 void method_0715(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0715\n");
+    De_printf("%s\n", "\nMetodo 0715\n");
 
     // Recepção dos dados
     int n = 0;
     double x = 0;
-    n = IO_readint("Insira a quantidade de numeros desejados: ");
-    x = IO_readdouble("Insira o valor de x: ");
+    n = De_readint("Insira a quantidade de numeros desejados: ");
+    x = De_readdouble("Insira o valor de x: ");
 
     // Processamento e apresentação dos dados
     printRealSequence(n, x);
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 
 }
@@ -138,7 +138,7 @@ void writeToFile06(int count, double x) {
         for (int i = 0; i < count; i++) {
             sum += pow(x, 2 * i);
         }
-        IO_fprintf(file, "Soma dos primeiros %d termos da sequencia: %.2lf\n", count, sum);
+        De_fprintf(file, "Soma dos primeiros %d termos da sequencia: %.2lf\n", count, sum);
         fclose(file);
     }
 }
@@ -146,19 +146,19 @@ void writeToFile06(int count, double x) {
 void method_0716(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0716\n");
+    De_printf("%s\n", "\nMetodo 0716\n");
 
     // Recepção dos dados
     int n = 0;
     double x = 0.0;
-    n = IO_readint("Insira a quantidade de numeros a serem somados: ");
-    x = IO_readdouble("Insira o valor de x: ");
+    n = De_readint("Insira a quantidade de numeros a serem somados: ");
+    x = De_readdouble("Insira o valor de x: ");
 
     // Processamento e apresentação dos dados
     writeToFile06(n, x);
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 }
 
@@ -171,7 +171,7 @@ void writeToFile07(int count) {
             sum += 1.0 / value;
             value *= 4; // Potências de 4
         }
-        IO_fprintf(file, "Soma dos primeiros %d inversos das potencias: %.5lf\n", count, sum);
+        De_fprintf(file, "Soma dos primeiros %d inversos das potencias: %.5lf\n", count, sum);
         fclose(file);
     }
 }
@@ -179,17 +179,17 @@ void writeToFile07(int count) {
 void method_0717(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0717\n");
+    De_printf("%s\n", "\nMetodo 0717\n");
 
     // Recepção dos dados
     int n = 0;
-    n = IO_readint("Insira a quantidade de numeros: ");
+    n = De_readint("Insira a quantidade de numeros: ");
 
     // Processamento e apresentação dos dados
     writeToFile07(n);
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 }
 
@@ -206,12 +206,12 @@ void writeToFile08(int count) {
         while (found < count) {
             int fib = fibonacci(index);
             if (fib % 2 == 0 && fib != 0) {
-                IO_fprintf(file, "%d ", fib);
+                De_fprintf(file, "%d ", fib);
                 found++;
             }
             index++;
         }
-        IO_fprintf(file, "\n");
+        De_fprintf(file, "\n");
         fclose(file);
     }
 }
@@ -219,17 +219,17 @@ void writeToFile08(int count) {
 void method_0718(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0718\n");
+    De_printf("%s\n", "\nMetodo 0718\n");
 
     // Recepção dos dados
     int n = 0;
-    n = IO_readint("Insira a quantidade de numeros pares da serie de Fibonacci: ");
+    n = De_readint("Insira a quantidade de numeros pares da serie de Fibonacci: ");
 
     // Processamento e apresentação dos dados
     writeToFile08(n);
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 }
 
@@ -244,7 +244,7 @@ void countLowercaseInFile() {
                 lowercaseCount++;
             }
         }
-        IO_fprintf(output, "Quantidade de minusculas: %d\n", lowercaseCount);
+        De_fprintf(output, "Quantidade de minusculas: %d\n", lowercaseCount);
         fclose(input);
         fclose(output);
     }
@@ -253,13 +253,13 @@ void countLowercaseInFile() {
 void method_0719(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0719\n");
+    De_printf("%s\n", "\nMetodo 0719\n");
 
     // Processamento e apresentação dos dados
     countLowercaseInFile();
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 }
 
@@ -274,7 +274,7 @@ void countDigitsInFile() {
                 digitCount++;
             }
         }
-        IO_fprintf(output, "Quantidade de digitos <= 4: %d\n", digitCount);
+        De_fprintf(output, "Quantidade de digitos <= 4: %d\n", digitCount);
         fclose(input);
         fclose(output);
     }
@@ -283,13 +283,13 @@ void countDigitsInFile() {
 void method_0720(void) {
 
     // Identificação do programa
-    IO_printf("%s\n", "\nMetodo 0720\n");
+    De_printf("%s\n", "\nMetodo 0720\n");
 
     // Processamento e apresentação dos dados
     countDigitsInFile();
 
     // Encerramento
-    IO_printf("%s\n", "\nPressione ENTER para continuar\n");
+    De_printf("%s\n", "\nPressione ENTER para continuar\n");
     getchar();
 }
 
@@ -299,16 +299,16 @@ int main (void) {
    int opcao = 0;
    
    // Identificação do programa
-   IO_printf("\n");
-   IO_printf("%s\n", "Lista_07 - v.1.0 - 29/09/2024");
-   IO_printf("%s\n", "Matricula: 855796 Nome: Rubens Dias Bicalho");
-   IO_printf("\n");
+   De_printf("\n");
+   De_printf("%s\n", "Lista_07 - v.1.0 - 29/09/2024");
+   De_printf("%s\n", "Matricula: 855796 Nome: Rubens Dias Bicalho");
+   De_printf("\n");
 
     // Selecionar ação
 
    do {
         // Ler opcão
-        opcao = IO_readint("Qual a sua opcao? ");
+        opcao = De_readint("Qual a sua opcao? ");
 
         // Escolher ação
         switch (opcao) {
@@ -323,11 +323,11 @@ int main (void) {
             case 8: method_0718(); break;
             case 9: method_0719(); break;
             case 10: method_0720(); break;
-            default: IO_printf("\n%s\n\n", "ERRO: Opcao invalida."); break;
+            default: De_printf("\n%s\n\n", "ERRO: Opcao invalida."); break;
         }
     } while (opcao != 0);
     
-    IO_printf("\n%s\n\n", "Apertar ENTER para terminar.");
+    De_printf("\n%s\n\n", "Apertar ENTER para terminar.");
     getchar();
 
 }

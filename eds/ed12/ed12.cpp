@@ -1,5 +1,5 @@
 /**
- * Atividade 11 - v1.0. - 03 / 11 / 2024
+ * Atividade 11 - v1.0. - 10 / 11 / 2024
  * Author: Rubens Dias Bicalho
  */
 
@@ -17,8 +17,7 @@
 
 using namespace std;
 
-// ----------------------------------------------- definicoes globais
-void pause (string text) {
+void pause(string text) {
     string dummy;
     cin.clear();
     cout << endl << text;
@@ -33,7 +32,6 @@ void pause (string text) {
 void method_0() {}
 
 void method_1211() {
-
     cout << endl << "Method_01 - v1.0\n" << endl;
 
     int m, n, min, max;
@@ -47,7 +45,6 @@ void method_1211() {
     matrix.fprint("DADOS.TXT");
 
     pause("Apertar ENTER para continuar");
-    
 }
 
 void method_1212() {
@@ -249,6 +246,8 @@ int main (int argc, char** argv) {
         cout << " 8 - Metodo 08" << endl;
         cout << " 9 - Metodo 09" << endl;
         cout << "10 - Metodo 10" << endl;
+        cout << "11 - Metodo E1" << endl;
+        cout << "12 - Metodo E2" << endl;
 
         cout << endl << "Entrar com uma opcao: ";
         cin >> x;

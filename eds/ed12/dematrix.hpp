@@ -1,10 +1,10 @@
 /*
-    mymatrix.hpp - v0.0. - __ / __ / _____
-    Author: _________________________
+    dematrix.hpp - v1.0 - 10 / 11 / 2024
+    Author: Rubens Dias Bicalho
 */
 
-#ifndef _MYMATRIX_H_
-#define _MYMATRIX_H_
+#ifndef _DEMATRIX_H_
+#define _DEMATRIX_H_
 
 /**
  * Dependências
@@ -21,7 +21,7 @@ using std::string; // para cadeia de caracteres
 using std::ofstream; // para gravar arquivo
 using std::ifstream; // para ler arquivo
 
-template < typename T >
+template <typename T>
 class Matrix {
 
 private:
@@ -113,7 +113,7 @@ public:
         cout << endl;
     }
 
-    void fprint(string fileName) {
+    void fprint(const string fileName) {
         ofstream afile;
         afile.open (fileName);
         afile << rows << endl;
@@ -126,7 +126,7 @@ public:
         afile.close();
     }
 
-    void fread(string fileName) {
+    void fread(const string fileName) {
         ifstream afile;
         int m = 0;
         int n = 0;

@@ -1,5 +1,5 @@
 /*
-    dearray.hpp - v1.0. - 03 / 11 / 2024
+    dearray.hpp - v1.0 - 10 / 11 / 2024
     Author: Rubens Dias Bicalho
 */
 
@@ -19,7 +19,7 @@ using std::setw; // para definir espacamento
 using std::string; // para cadeia de caracteres
 #include <fstream>
 using std::ofstream; // para gravar arquivo
-using std::ifstream ; // para ler arquivo
+using std::ifstream; // para ler arquivo
 
 template <typename T>
 class Array {
@@ -62,7 +62,7 @@ public:
         }
     }
 
-    Array (const Array& other) {
+    Array(const Array& other) {
         if (other.length <= 0) {
             cout << "\nERROR: Missing data.\n" << endl;
         } else {
@@ -74,7 +74,7 @@ public:
         }
     }
 
-    Array (int n, int min, int max) {
+    Array(int n, int min, int max) {
         length = 0;
         data = nullptr;
         if (n > 0) {
@@ -128,7 +128,7 @@ public:
         cout << endl;
     }
 
-    void fprint ( string fileName ) {
+    void fprint(const string fileName) {
         ofstream afile;
         afile.open ( fileName );
         afile << length << endl;
@@ -138,7 +138,7 @@ public:
         afile.close ( );
     }
 
-    void fread (string fileName) {
+    void fread(const string fileName) {
         ifstream afile;
         int n = 0;
         afile.open (fileName);
@@ -158,7 +158,7 @@ public:
     /**
      * Operadores
      */
-    Array& operator= (const Array <T> other) {
+    Array& operator=(const Array <T> other) {
         if ( other.length <= 0 ) {
             cout << "\nERROR: Missing data.\n" << endl;
         } else {
@@ -171,7 +171,7 @@ public:
         return (*this);
     }
 
-    bool operator== (const Array <T> other) {
+    bool operator==(const Array <T> other) {
         bool result = false;
         int x = 0;
         if (other.length == 0 || length != other.length) {
@@ -187,7 +187,7 @@ public:
         return (result);
     }
 
-    Array& operator+ ( const Array <T> other ) {
+    Array& operator+( const Array <T> other ) {
         static Array <T> result (other);
         if ( other.length <= 0 ) {
             cout << "\nERROR: Missing data.\n" << endl;
@@ -199,7 +199,7 @@ public:
         return (result);
     }
 
-    bool operator!= (const Array <T> other) {
+    bool operator!=(const Array <T> other) {
         if (other.length == 0 || length != other.length) {
             cout << "\nERROR: Missing data.\n" << endl;
             return true;
